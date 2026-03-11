@@ -9,11 +9,11 @@ TermBar is a lightweight macOS menu bar app that gives you instant access to you
 ## Features
 
 - **Four AI agents** in one dropdown: Claude, Codex, Kimi, and Gemini
-- **Keyboard shortcuts** (Cmd+1 through Cmd+4) for instant launch
-- **Global hotkey** (Ctrl+Opt+T) opens the menu from any app
+- **Global hotkeys** (Ctrl+Opt+1 through Ctrl+Opt+4) for instant launch
+- **Global menu hotkey** (Ctrl+Opt+T) opens the menu from any app
 - **Fresh Terminal window** every time — no reusing stale sessions
 - **Native macOS** menu bar app — no Electron, no overhead
-- **SF Symbols** for each tool so you can identify them at a glance
+- **Brand logos** for each tool — programmatic vector icons, no bundled assets
 
 ## How It Works
 
@@ -29,10 +29,10 @@ TermBar is a lightweight macOS menu bar app that gives you instant access to you
 
 | Agent | Command | Shortcut | Description |
 |-------|---------|----------|-------------|
-| Claude | `claude --dangerously-skip-permissions` | Cmd+1 | Anthropic's Claude Code CLI with auto-permissions |
-| Codex | `codex` | Cmd+2 | OpenAI's Codex CLI agent |
-| Kimi | `kimi-cli` | Cmd+3 | Moonshot AI's Kimi CLI agent |
-| Gemini | `gemini` | Cmd+4 | Google's Gemini CLI agent |
+| Claude | `claude --dangerously-skip-permissions` | Ctrl+Opt+1 | Anthropic's Claude Code CLI with auto-permissions |
+| Codex | `codex` | Ctrl+Opt+2 | OpenAI's Codex CLI agent |
+| Kimi | `kimi-cli` | Ctrl+Opt+3 | Moonshot AI's Kimi CLI agent |
+| Gemini | `gemini` | Ctrl+Opt+4 | Google's Gemini CLI agent |
 
 ## Installation
 
@@ -80,8 +80,10 @@ TermBar is configured in `Sources/TermBar/AppDelegate.swift`. To add or modify t
 
 ```swift
 private let tools: [ToolItem] = [
-    ToolItem(name: "Claude", symbolName: "sparkles", command: "claude --dangerously-skip-permissions", keyEquivalent: "1"),
-    ToolItem(name: "Codex", symbolName: "chevron.left.forwardslash.chevron.right", command: "codex", keyEquivalent: "2"),
+    ToolItem(name: "Claude", command: "claude --dangerously-skip-permissions",
+             keyCode: UInt32(kVK_ANSI_1), shortcutLabel: "Ctrl+Opt+1"),
+    ToolItem(name: "Codex", command: "codex",
+             keyCode: UInt32(kVK_ANSI_2), shortcutLabel: "Ctrl+Opt+2"),
     // Add more tools here
 ]
 ```
